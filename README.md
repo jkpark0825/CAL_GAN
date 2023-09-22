@@ -16,11 +16,13 @@ pip install -r requirements.txt
 ```
 
 - Prepare the training and testing dataset.
-- Prepare the pre-trained models (PSNR oritented models).
+- Prepare the pre-trained models (PSNR oritented models) from https://github.com/xinntao/ESRGAN.
 
 #### Training
 
 Adapt yml file:  ```options/trainCAL_GAN/*.yml``` 
+
+
 
 - Single GPU:
 ```bash
