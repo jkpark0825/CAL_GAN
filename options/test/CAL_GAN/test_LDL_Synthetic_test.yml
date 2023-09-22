@@ -1,0 +1,96 @@
+name: benchmark_test
+model_type: ESRGANModel
+scale: 4
+num_gpu: 1  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+datasets:
+  test_1:
+    name: Set5
+    type: PairedImageDataset
+    dataroot_gt: /home/jkpark0825/Research/dataset/benchmark/Set5/HR
+    dataroot_lq: /home/jkpark0825/Research/dataset/benchmark/Set5/LR_bicubic/X4
+    io_backend:
+      type: disk
+  test_2:
+    name: Set14
+    type: PairedImageDataset
+    dataroot_gt: /home/jkpark0825/Research/dataset/benchmark/Set14/HR
+    dataroot_lq: /home/jkpark0825/Research/dataset/benchmark/Set14/LR_bicubic/X4
+    io_backend:
+      type: disk
+  test_3:
+    name: Manga109
+    type: PairedImageDataset
+    dataroot_gt: /home/jkpark0825/Research/dataset/benchmark/Manga109/HR
+    dataroot_lq: /home/jkpark0825/Research/dataset/benchmark/Manga109/LR_bicubic/X4
+    io_backend:
+      type: disk
+  test_4:
+    name: General100
+    type: PairedImageDataset
+    dataroot_gt: /home/jkpark0825/Research/dataset/benchmark/General100/HR
+    dataroot_lq: /home/jkpark0825/Research/dataset/benchmark/General100/LR_bicubic/X4
+    io_backend:
+      type: disk
+  test_5:
+    name: Urban100
+    type: PairedImageDataset
+    dataroot_gt: /home/jkpark0825/Research/dataset/benchmark/Urban100/HR
+    dataroot_lq: /home/jkpark0825/Research/dataset/benchmark/Urban100/LR_bicubic/X4
+    io_backend:
+      type: disk
+  test_6:
+    name: DIV2K_VAL
+    type: PairedImageDataset
+    dataroot_gt: /home/jkpark0825/project/LDL_domain/datasets/DIV2K/DIV2K_valid_HR
+    dataroot_lq: /home/jkpark0825/project/LDL_domain/datasets/DIV2K/DIV2K_valid_LR_bicubic/X4
+    io_backend:
+      type: disk
+  test_7:
+    name: B100
+    type: PairedImageDataset
+    dataroot_gt: /home/jkpark0825/Research/dataset/benchmark/B100/HR
+    dataroot_lq: /home/jkpark0825/Research/dataset/benchmark/B100/LR_bicubic/X4
+    io_backend:
+      type: disk
+
+network_g:
+  type: RRDBNet
+  num_in_ch: 3
+  num_out_ch: 3
+  num_feat: 64
+  num_block: 23
+  num_grow_ch: 32
+
+
+#best
+# pretrain_network_g: /home/jkpark0825/project/LDL_domain/experiments/train_orthonet_10classes_1adv_F_dis2/models/net_g_150000.pth
+# path
+path:
+  # pretrain_network_g: /home/jkpark0825/project/LDL_domain/experiments/train_orthonet_10classes_1adv_F_dis2/models/net_g_95000.pth
+  # pretrain_network_g: /home/jkpark0825/project/LDL_domain/experiments/train_orthonet_10classes_1adv_unet/models/net_g_140000.pth
+  pretrain_network_g: /home/jkpark0825/project/LDL/experiments/train_orthonet_synthetic_RRDB2_12expert/models/net_g_50000.pth
+  # pretrain_network_g: /home/jkpark0825/project/LDL_domain/experiments/Demeter/net_g_195000.pth
+  param_key_g: params
+  strict_load_g: true
+
+# validation settings
+val:
+  save_img: true
+  suffix: test  # add suffix to saved images, if None, use exp name
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 4
+      test_y_channel: true
+    ssim:
+      type: calculate_ssim
+      crop_border: 4
+      test_y_channel: true
+
+
+
+#PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0 python basicsr/test.py -opt options/test/LDL/test_LDL_Synthetic_x4.yml
+#PYTHONPATH="./:${PYTHONPATH}" OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=0 python basicsr/test.py -opt options/test/LDL/test_LDL_Synthetic_x4.yml
