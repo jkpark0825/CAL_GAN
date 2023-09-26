@@ -8,6 +8,9 @@ dividing them into smaller subsets based on similar contents.
 Our mixture of classifiers (MoC) design allocates different super-resolved patches to corresponding expert classifiers.
 Additionally, we introduce novel routing and orthogonality loss terms so that different classifiers can handle various contents and learn separable features.
 By feeding similar distributions into the corresponding specialized classifiers, CAL-GAN enhances the representation power of existing super-resolution models, achieving state-of-the-art perceptual performance on standard benchmarks and real-world images without modifying the generator-side architecture.
+![alt text](images/1.png)
+![alt text](images/2.png)
+![alt text](images/3.png)
 
 #### Getting started
 
