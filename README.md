@@ -29,8 +29,10 @@ pip install -r requirements.txt
 - Prepare the pre-trained models (PSNR oritented models) from https://github.com/xinntao/ESRGAN.
 
 #### Training
-If you prefer not to train the model, you can simply obtain the pretrained model by downloading it from this link: 
+If you prefer not to train the model, you can simply obtain the pretrained model by downloading it from this link:
+
 Synthetic: https://drive.google.com/file/d/1qWGpKE0sUKnB1Rd5_1KOdCvi5xRNUgQ9/view?usp=sharing.
+
 Real-world: https://drive.google.com/file/d/19x8UZ1j8yLtK7SGExeycd0pyoxuQ3F-_/view?usp=sharing
 
 Adapt yml file:  ```options/trainCAL_GAN/*.yml``` 
