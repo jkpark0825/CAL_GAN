@@ -1,4 +1,8 @@
 # CAL_GAN
+This repository is an official implementation of the paper "Content-Aware Local GAN for Photo-Realistic Super-Resolution (ICCV 2023)".
+
+Please refer to the paper for details:
+https://openaccess.thecvf.com/content/ICCV2023/papers/Park_Content-Aware_Local_GAN_for_Photo-Realistic_Super-Resolution_ICCV_2023_paper.pdf
 
 ### Abstract
 Recently, GAN has successfully contributed to making single-image super-resolution (SISR) methods produce more realistic images.
